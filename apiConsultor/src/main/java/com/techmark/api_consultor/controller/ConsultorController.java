@@ -10,8 +10,10 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
 
 @RestController
 @RequestMapping("/api")
@@ -67,5 +69,44 @@ public class ConsultorController {
         return resposta.toString();
         
     }
-    
+    @GetMapping("/cep/{cep}")          
+    public String consultarCep(@PathVariable String sCep) {
+        try {
+            String url = "https://viacep.com.br/ws/" + sCep + "/json/";
+            String sJsonResposta = fazerRequisicao(url);
+
+            return "";
+        }
+        catch (IOException erro) {
+            return "Aconteceu um erro: " + erro.getMessage();
+        }
+    }
+
+    private String extrairValorJson(String json, String chave) {
+        try {
+            String busca = "\"" + chave + "\":\"";
+            int inicio = json.indexOf(busca);
+            if (inicio == -1) {
+                busca = "\"" + chave + "\":";
+                inicio = json.indexOf(busca);
+                if (inicio == -1) { 
+                    return "Não existe esse campo!";
+                }
+                inicio += busca.length();
+                int fim = json.indexOf(",", inicio);
+
+                if (fim == -1) {
+                    fim = json.indexOf("}", inicio);
+                }
+
+                return json.substring(inicio, fim).trim();
+            }
+            inicio += busca.length();
+            int fim = json.indexOf("\"", inicio);
+            return json.substring(inicio, fim).trim();
+
+        } catch (Exception error) {
+            return "Não encontado!";
+        }
+    }
 }
