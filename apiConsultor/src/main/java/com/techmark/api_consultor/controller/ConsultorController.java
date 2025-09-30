@@ -35,9 +35,9 @@ public class ConsultorController {
         <h1>Consultor APIs - Spring Boot </h1>
         <H2>Endpoints Disponíveis: </H2>
             <ul>
-                <li><a href=""></a> - Buscar CEP </li>
-                <li><a href=""></a> - Fatos Gatos </li>
-                <li><a href=""></a> - Piadas </li>
+                <li><a href="/api/cep"></a> - Buscar CEP </li>
+                <li><a href="">/api/fato-gato</a> - Fatos Gatos </li>
+                <li><a href="">/api/piadas</a> - Piadas </li>
                 <li></li>
             </ul>        
                 """;
@@ -75,7 +75,17 @@ public class ConsultorController {
             String url = "https://viacep.com.br/ws/" + sCep + "/json/";
             String sJsonResposta = fazerRequisicao(url);
 
-            return "";
+            String logradouro = extrairValorJson(sJsonResposta, "logradouro");
+            String bairro     = extrairValorJson(sJsonResposta, "bairro");
+            String localidade = extrairValorJson(sJsonResposta, "localidade");
+            String uf         = extrairValorJson(sJsonResposta, "uf");
+
+            return String.format("""
+                Logradouro: %s
+                Bairro: %s          
+                Localidade: %s
+                UF: %s
+                """, logradouro, bairro, localidade, uf);
         }
         catch (IOException erro) {
             return "Aconteceu um erro: " + erro.getMessage();
