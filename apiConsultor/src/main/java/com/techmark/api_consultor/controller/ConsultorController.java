@@ -36,8 +36,8 @@ public class ConsultorController {
         <H2>Endpoints Disponíveis: </H2>
             <ul>
                 <li><a href="/api/cep"></a> - Buscar CEP </li>
-                <li><a href="">/api/fato-gato</a> - Fatos Gatos </li>
-                <li><a href="">/api/piadas</a> - Piadas </li>
+                <li><a href="">/api/fato</a> - Fatos Gatos </li>
+                <li><a href="">/api/conselhos</a> - Piadas </li>
                 <li></li>
             </ul>        
                 """;
@@ -81,6 +81,7 @@ public class ConsultorController {
             String uf         = extrairValorJson(sJsonResposta, "uf");
 
             return String.format("""
+                Consulta do CEP -
                 Logradouro: %s
                 Bairro: %s          
                 Localidade: %s
@@ -117,6 +118,44 @@ public class ConsultorController {
 
         } catch (Exception error) {
             return "Não encontado!";
+        }
+    }
+    // Método para consultar fatos de gatos
+    @GetMapping("/fato")          
+    public String consultarFatosGatos() {
+        try {
+            String url = "https://catfact.ninja/fact";
+            String sJsonResposta = fazerRequisicao(url);
+    
+            String fato = extrairValorJson(sJsonResposta, "fact");
+
+            return String.format("""
+                Consulta Fatos de Gatos -
+                Fato: %s
+
+                """, fato);
+        }
+        catch (IOException erro) {
+            return "Aconteceu um erro: " + erro.getMessage();
+        }
+    }
+
+    @GetMapping("/conselho")
+    public String consultarConselhoAleatorio() {
+        try {
+            String url = "https://api.adviceslip.com/advice";
+            String sJsonResposta = fazerRequisicao(url);
+
+            String conselho = extrairValorJson(sJsonResposta, "advice");
+
+            return String.format("""
+                Consulta Conselho Aleatório -
+                Conselho: %s
+
+                """, conselho);
+        }
+        catch (IOException erro) {
+            return "Aconteceu um erro: " + erro.getMessage();
         }
     }
 }
