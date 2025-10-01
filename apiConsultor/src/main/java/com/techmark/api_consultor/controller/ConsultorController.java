@@ -33,15 +33,15 @@ public class ConsultorController {
     public String home() {
         return """
         <h1>Consultor APIs - Spring Boot </h1>
-        <H2>Endpoints Disponíveis: </H2>
+        <h2>Endpoints Disponíveis: </h2>
             <ul>
-                <li><a href="/api/cep"></a> - Buscar CEP </li>
-                <li><a href="">/api/fato</a> - Fatos Gatos </li>
-                <li><a href="">/api/conselhos</a> - Piadas </li>
-                <li></li>
+                <li><a href="/api/cep/01001000">/api/cep/{cep}</a> - Buscar CEP</li>
+                <li><a href="/api/fato">/api/fato</a> - Fatos de Gatos</li>
+                <li><a href="/api/conselho">/api/conselho</a> - Conselhos Aleatórios</li>
             </ul>        
                 """;
     }
+
     // Método responsável reutilizado do ConsultorApi original
     private String fazerRequisicao(String urlString) throws IOException {
         URL url = new URL(urlString);
@@ -69,10 +69,11 @@ public class ConsultorController {
         return resposta.toString();
         
     }
+    // Método para consultar CEP
     @GetMapping("/cep/{cep}")          
-    public String consultarCep(@PathVariable String sCep) {
+    public String consultarCep(@PathVariable String cep) {
         try {
-            String url = "https://viacep.com.br/ws/" + sCep + "/json/";
+            String url = "https://viacep.com.br/ws/" + cep + "/json/";
             String sJsonResposta = fazerRequisicao(url);
 
             String logradouro = extrairValorJson(sJsonResposta, "logradouro");
