@@ -38,6 +38,7 @@ public class ConsultorController {
                 <li><a href="/api/cep/01001000">/api/cep/{cep}</a> - Buscar CEP</li>
                 <li><a href="/api/fato">/api/fato</a> - Fatos de Gatos</li>
                 <li><a href="/api/conselho">/api/conselho</a> - Conselhos Aleatórios</li>
+                <li><a href="/api/frontend">/api/frontend</a> - Página de Testes (Frontend)</li>
             </ul>        
                 """;
     }
@@ -159,4 +160,9 @@ public class ConsultorController {
             return "Aconteceu um erro: " + erro.getMessage();
         }
     }
+    @GetMapping("/frontend")
+    public String frontend() {
+        return "index";
+    }
 }
+
