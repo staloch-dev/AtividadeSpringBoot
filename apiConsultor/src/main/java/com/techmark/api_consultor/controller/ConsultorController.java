@@ -160,9 +160,5 @@ public class ConsultorController {
             return "Aconteceu um erro: " + erro.getMessage();
         }
     }
-    @GetMapping("/frontend")
-    public String frontend() {
-        return "index";
-    }
 }
 
