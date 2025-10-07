@@ -1,0 +1,193 @@
+/*
+  style.css para página de testes da TechMark API
+  - Responsivo
+  - Psicologia das cores: azul (confiança), verde (sucesso), branco (limpeza), cinza (neutro)
+  - Comentários explicativos
+*/
+
+
+body {
+    margin: 0; /* Remove margens padrão do navegador */
+    padding: 0; /* Remove padding padrão do navegador */
+    font-family: 'Segoe UI', Arial, sans-serif; /* Fonte moderna e legível */
+    background: linear-gradient(120deg, #e0eafc 0%, #cfdef3 100%); /* Fundo suave azul */
+    min-height: 100vh; /* Garante altura mínima de tela cheia */
+    color: #222; /* Cor de texto principal */
+}
+
+
+.container {
+    display: flex; /* Layout flexível em linha */
+    flex-direction: row; /* Direção principal: linha */
+    min-height: 100vh; /* Ocupa toda a altura da tela */
+    align-items: center; /* Centraliza verticalmente os painéis */
+    justify-content: flex-start; /* Alinha os painéis à esquerda */
+}
+
+
+/* Lateral esquerda para os campos, alinhada à esquerda mas com margem */
+.left-panel {
+    flex: none; /* Não cresce além do necessário */
+    width: 420px; /* Largura fixa para o painel de campos */
+    background: rgba(255,255,255,0.96); /* Fundo branco levemente translúcido */
+    padding: 48px 36px 48px 48px; /* Espaçamento interno, mais à esquerda */
+    display: flex; /* Flexbox para alinhar conteúdo */
+    flex-direction: column; /* Conteúdo em coluna */
+    justify-content: center; /* Centraliza verticalmente os campos */
+    box-shadow: 2px 0 10px rgba(0,0,0,0.07); /* Sombra sutil à direita */
+    border-radius: 24px; /* Arredonda só o lado direito */
+    margin-left: 4vw; /* Margem à esquerda para não colar na borda */
+    min-height: 480px; /* Altura mínima para centralizar melhor */
+}
+
+
+.left-panel h1 {
+    color: #2563eb; /* Azul forte: confiança */
+    margin-bottom: 10px; /* Espaço abaixo do título */
+}
+
+
+.left-panel section {
+    margin-bottom: 32px; /* Espaço entre seções */
+    padding-bottom: 18px; /* Espaço interno abaixo */
+    border-bottom: 1px solid #e0e0e0; /* Linha divisória sutil */
+}
+
+
+.left-panel h2 {
+    color: #16a34a; /* Verde: sucesso, positividade */
+    margin-bottom: 10px; /* Espaço abaixo do subtítulo */
+    font-size: 1.2em; /* Tamanho do subtítulo */
+}
+
+
+input[type="text"] {
+    padding: 8px 12px; /* Espaço interno do campo */
+    border: 1px solid #bdbdbd; /* Borda cinza clara */
+    border-radius: 7px; /* Cantos arredondados */
+    font-size: 1em; /* Tamanho da fonte */
+    margin-right: 8px; /* Espaço à direita do campo */
+    width: 180px; /* Largura fixa */
+    transition: border 0.2s; /* Transição suave ao focar */
+}
+
+input[type="text"]:focus {
+    border: 1.5px solid #2563eb; /* Borda azul ao focar */
+    outline: none; /* Remove contorno padrão */
+}
+
+button {
+    background: #2563eb; /* Fundo azul */
+    color: #fff; /* Texto branco */
+    border: none; /* Sem borda */
+    border-radius: 7px; /* Cantos arredondados */
+    padding: 8px 18px; /* Espaço interno do botão */
+    font-size: 1em; /* Tamanho da fonte */
+    cursor: pointer; /* Cursor de mãozinha */
+    transition: background 0.2s, transform 0.1s; /* Transições suaves */
+    box-shadow: 0 2px 8px rgba(37,99,235,0.08); /* Sombra leve */
+}
+
+button:hover {
+    background: #174ea6; /* Azul mais escuro ao passar o mouse */
+    transform: translateY(-2px) scale(1.04); /* Efeito de leve elevação */
+}
+
+.result {
+    margin-top: 10px; /* Espaço acima do resultado */
+    padding: 10px 14px; /* Espaço interno do resultado */
+    background: #f1f5f9; /* Fundo cinza claro */
+    border-radius: 6px; /* Cantos arredondados */
+    color: #222; /* Cor do texto */
+    font-size: 1em; /* Tamanho da fonte */
+    min-height: 24px; /* Altura mínima */
+    box-shadow: 0 1px 4px rgba(0,0,0,0.04); /* Sombra sutil */
+}
+
+/* Painel direito para imagem ou fundo decorativo */
+
+.right-panel {
+    flex: 1 1 0%; /* Ocupa o restante do espaço */
+    background: url('https://images.unsplash.com/photo-1623282033815-40b05d96c903?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') center/cover no-repeat; /* Imagem de fundo */
+    display: flex; /* Flexbox para centralizar conteúdo */
+    align-items: center; /* Centraliza verticalmente */
+    justify-content: center; /* Centraliza horizontalmente */
+    position: relative; /* Para overlay */
+    border-radius: 24px; /* Arredonda as bordas */
+    margin-left: 32px; /* Espaço entre os painéis */
+    min-height: 480px; /* Altura mínima igual ao painel esquerdo */
+    margin-right: 4vw; /* Margem à direita para não colar na borda */
+}
+
+
+.right-panel::before {
+    content: ""; /* Overlay decorativo */
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(37,99,235,0.25); /* overlay azul translúcido */
+    border-radius: 24px 24px; /* Segue o arredondamento do painel */
+}
+
+
+.right-panel .logo {
+    position: relative; /* Para ficar acima do overlay */
+    z-index: 1; /* Garante que aparece acima */
+    background: rgba(255,255,255,0.85); /* Fundo branco translúcido */
+    padding: 32px 48px; /* Espaço interno */
+    border-radius: 18px; /* Cantos arredondados */
+    box-shadow: 0 4px 24px rgba(0,0,0,0.10); /* Sombra forte */
+    text-align: center; /* Centraliza texto e imagem */
+}
+
+
+.right-panel .logo img {
+    width: 120px; /* Tamanho da logo */
+    margin-bottom: 18px; /* Espaço abaixo da logo */
+}
+
+
+.right-panel .logo h2 {
+    color: #2563eb; /* Azul forte */
+    font-size: 2em; /* Tamanho grande */
+    margin: 0; /* Remove margem padrão */
+}
+
+
+/* Responsividade para tablets */
+@media (max-width: 900px) {
+    .container {
+        flex-direction: column; /* Empilha painéis */
+        align-items: stretch; /* Painéis ocupam toda a largura */
+    }
+    .right-panel, .left-panel {
+        margin: 18px 2vw; /* Margens menores nas laterais */
+        border-radius: 24px; /* Arredonda todos os lados */
+        max-width: 98vw; /* Limita largura */
+        min-height: unset;
+        width: auto;
+    }
+    .left-panel {
+        padding: 24px 6vw;
+    }
+}
+
+/* Responsividade para celulares */
+@media (max-width: 600px) {
+    .container {
+        flex-direction: column; /* Empilha painéis */
+    }
+    .left-panel, .right-panel {
+        margin: 10px 0;
+        border-radius: 18px;
+        max-width: 100vw;
+    }
+    .left-panel {
+        padding: 14px 2vw;
+    }
+    .right-panel .logo {
+        padding: 18px 10px;
+    }
+    .right-panel .logo img {
+        width: 80px;
+    }
+}

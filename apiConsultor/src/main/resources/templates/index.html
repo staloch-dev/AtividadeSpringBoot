@@ -6,23 +6,34 @@
     <link rel="stylesheet" href="/style.css">
 </head>
 <body>
-    <h1>Testar Endpoints da API</h1>
-    <section>
-        <h2>Buscar CEP</h2>
-        <input type="text" id="cepInput" placeholder="Digite o CEP">
-        <button onclick="buscarCep()">Buscar CEP</button>
-        <div id="cepResultado"></div>
-    </section>
-    <section>
-        <h2>Fato de Gato</h2>
-        <button onclick="buscarFatoGato()">Mostrar Fato de Gato</button>
-        <div id="fatoGatoResultado"></div>
-    </section>
-    <section>
-        <h2>Conselho Aleatório</h2>
-        <button onclick="buscarConselho()">Mostrar Conselho</button>
-        <div id="conselhoResultado"></div>
-    </section>
+    <div class="container">
+        <div class="left-panel">
+            <h1>Testes de API TechMark</h1>
+            <section>
+                <h2>Buscar CEP</h2>
+                <input type="text" id="cepInput" placeholder="Digite o CEP">
+                <button onclick="buscarCep()">Buscar CEP</button>
+                <div id="cepResultado" class="result"></div>
+            </section>
+            <section>
+                <h2>Fato de Gato</h2>
+                <button onclick="buscarFatoGato()">Mostrar Fato de Gato</button>
+                <div id="fatoGatoResultado" class="result"></div>
+            </section>
+            <section>
+                <h2>Conselho Aleatório</h2>
+                <button onclick="buscarConselho()">Mostrar Conselho</button>
+                <div id="conselhoResultado" class="result"></div>
+            </section>
+        </div>
+        <div class="right-panel">
+            <div class="logo">
+                <img src="https://cdn-icons-png.flaticon.com/512/8297/8297437.png" alt="Logo" />
+                <h2>TechMark API</h2>
+                <p>Testes de integração</p>
+            </div>
+        </div>
+    </div>
     <script src="/script.js"></script>
 </body>
 </html>
